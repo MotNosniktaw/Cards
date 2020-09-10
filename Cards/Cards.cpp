@@ -73,14 +73,20 @@ public:
             std::cout << card.GetValue() << " " << card.GetSuit() << endl;
         }
     }
+
+    Card DealCard() {
+        Card cardToDeal = Cards.front();
+        Cards.erase(Cards.begin());
+        return cardToDeal;
+    }
 };
 
 int main()
 {
     std::cout << "Hello World!\n";
 
-    vector<int> values{ 1, 2, 3, 4, 5, 6, 7, 8 };
-    vector<string> suits{ "Potato", "Carrot", "Turnip", "Suede" };
+    vector<int> values{ 1, 2, 3 };
+    vector<string> suits{ "Potato", "Carrot" };
 
     Deck deck(values, suits);
 
@@ -88,13 +94,16 @@ int main()
     std::cout << endl;
     deck.ShuffleDeck();
     deck.ReadCards();
-    std::cout << endl;
-    deck.ShuffleDeck();
-    deck.ReadCards();
-    std::cout << endl;
-    deck.ShuffleDeck();
+
+    Card card1 = deck.DealCard();
+    std::cout << endl << card1.GetValue() << " " << card1.GetSuit() << endl << endl;
+
     deck.ReadCards();
 
+    Card card2 = deck.DealCard();
+    std::cout << endl << card2.GetValue() << " " << card2.GetSuit() << endl << endl;
+
+    deck.ReadCards();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
